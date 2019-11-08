@@ -1,4 +1,4 @@
-name: Build and Validate
+name: Maven CI with Nexus IQ
 
 on: [push]
 
@@ -14,8 +14,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn clean install
-    - name: Run NVS
+      run: mvn package --file pom.xml
+    - name: Nexus IQ Policy Evaluation
       uses: sonatype/nvs-github-actions@v1
       with:
         email: mshevelov@sonatype.com
