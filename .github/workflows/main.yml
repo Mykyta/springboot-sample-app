@@ -1,4 +1,4 @@
-name: Maven CI with Nexus IQ
+name: Maven with NVS
 
 on: [push]
 
@@ -14,11 +14,10 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn package --file pom.xml
-    - name: Nexus IQ Policy Evaluation
-      uses: sonatype/nvs-github-actions@v1
+      run: mvn package dependency:copy-dependencies
+    - name: Nexus Vulnerability Scanner
+      uses: sonatype/nvs-github-action@releases/v1.0.0
       with:
         email: ${{ secrets.NVS_SCANNER_EMAIL }}
         password: ${{ secrets.NVS_SCANNER_PASSWORD }}
-        directory: target
-    
+        directory: ./target/
