@@ -16,7 +16,7 @@ jobs:
     - name: Build with Maven
       run: mvn package dependency:copy-dependencies
     - name: Nexus Vulnerability Scanner
-      uses: sonatype/nvs-github-action@releases/v1.0.0
+      uses: sonatype/nvs-github-action@v1.0.0
       with:
         email: ${{ secrets.NVS_SCANNER_EMAIL }}
         password: ${{ secrets.NVS_SCANNER_PASSWORD }}
